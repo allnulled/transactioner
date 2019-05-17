@@ -288,7 +288,9 @@ transactioner
 To run the tests, including coverage, you can:
 
 `$ cd node_modules/transactioner`
+
 `$ npm install`
+
 `$ npm run coverage`
 
 ## Issues
