@@ -1,0 +1,22 @@
+{
+  "name": "transactioner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  	"docs": "javadoc -i src/*.js -f markdown -o README.md",
+  	"clean": "rimraf .nyc_output coverage node_modules",
+    "test": "mocha test/*.test.js",
+    "coverage": "nyc --reporter=html mocha test/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "javadoc": "^1.0.6",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "rimraf": "^2.6.3"
+  }
+}
