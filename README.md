@@ -7,6 +7,8 @@
 
 Manage simple transactions in pure JavaScript.
 
+[![NPM](https://nodei.co/npm/transactioner.png?stars&downloads)](https://www.npmjs.com/package/transactioner)
+
 ## Install
 
 `$ npm install transactioner`
