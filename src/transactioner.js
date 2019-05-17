@@ -2,9 +2,9 @@
  * 
  * # transactioner
  * 
- * ![](https://img.shields.io/badge/version-1.0.0-green.svg) ![](https://img.shields.io/badge/tests-100%25-green.svg) ![](https://img.shields.io/badge/coverage-100%25-green.svg) 
- * 
  * Manage simple transactions in pure JavaScript.
+ * 
+ * ![](https://img.shields.io/badge/version-1.0.0-green.svg) ![](https://img.shields.io/badge/tests-100%25-green.svg) ![](https://img.shields.io/badge/coverage-100%25-green.svg) 
  * 
  * [![NPM](https://nodei.co/npm/transactioner.png?stars&downloads)](https://www.npmjs.com/package/transactioner)
  * 
