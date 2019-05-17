@@ -146,7 +146,7 @@ They hold a status, which can be unfinished, committed or rolledback.
 
 #### transactioner.undoers = []
 
-**Type:** Array<Function>
+**Type:** array &lt;Function&gt;
 
 **InitialValue:** []
 
@@ -164,12 +164,14 @@ They hold a status, which can be unfinished, committed or rolledback.
 
 **Type:** number
 
-**InitialValue:** 0 (Transactioner.STATUS_UNFINISHED)
+**InitialValue:** 0 (= `Transactioner.STATUS_UNFINISHED`)
 
 **Description:** Value that represents the current status of the transactioner instance. The available values are:
- - 0: Transactioner.STATUS_UNFINISHED. The transaction has not been committed or rolled-back.
- - 1: Transactioner.STATUS_SUCCESS. The transaction has been committed.
- - 2: Transactioner.STATUS_ERROR. The transaction has been rolled-back.
+
+ - 0: `Transactioner.STATUS_UNFINISHED`. The transaction has not been committed or rolled-back.
+ - 1: `Transactioner.STATUS_SUCCESS`. The transaction has been committed.
+ - 2: `Transactioner.STATUS_ERROR`. The transaction has been rolled-back.
+
 When the value of this proprty is not 0, the methods `run`, `commit` and `rollback` will be blocked and will throw errors.
 
 
@@ -184,12 +186,14 @@ When the value of this proprty is not 0, the methods `run`, `commit` and `rollba
 
 **Type:** method
 
-**Parameters:** ...actions. Objects of the form: { up: <Function>, down: <Function> }. The up functions are executed in the same call. The down functions are saved until the transactioner instance is:
+**Parameters:** `...actions`. Objects of the form: `{ up: &lt;Function&gt;, down: &lt;Function&gt; }`. The up functions are executed in the same call. The down functions are saved until the transactioner instance is:
+
  - rolled-back: in this case, the downs will be called reversedly, or:
  - committed: in this case, the downs will be deleted.
+
 The down functions are saved under the `transactioner.undoers` array.
 
-**Returns:** Transactioner:Object. The instance itself, to make it chainable, so you can:
+**Returns:** `Transactioner:Object`. The instance itself, to make it chainable, so you can:
 ```js
 transactioner
  .run({ up: () => {}, down: () => {} })
@@ -199,9 +203,9 @@ transactioner
  .commit();
 ```
 
-**Throws:** Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED when the transactioner.status is Transactioner.STATUS_SUCCESS.
+**Throws:** `Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED` when the transactioner.status is `Transactioner.STATUS_SUCCESS`.
 
-**Throws:** Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK when the transactioner.status is Transactioner.STATUS_ERROR.
+**Throws:** `Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK` when the transactioner.status is `Transactioner.STATUS_ERROR`.
 
 
 
@@ -215,13 +219,13 @@ transactioner
 
 **Type:** method
 
-**Returns:** Transactioner:Object. The instance itself, to make it chainable.
+**Returns:** `Transactioner:Object`. The instance itself, to make it chainable.
 
 **Description:** Commits the transaction, which means that the status is set to Transactioner.STATUS_SUCCESS, and the undoers are cleared.
 
-**Throws:** Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED when the transactioner.status is Transactioner.STATUS_SUCCESS.
+**Throws:** `Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED` when the transactioner.status is `Transactioner.STATUS_SUCCESS`.
 
-**Throws:** Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK when the transactioner.status is Transactioner.STATUS_ERROR.
+**Throws:** `Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK` when the transactioner.status is `Transactioner.STATUS_ERROR`.
 
 
 
@@ -235,7 +239,7 @@ transactioner
 
 **Type:** method
 
-**Returns:** Transactioner:Object. The instance itself, to make it chainable.
+**Returns:** `Transactioner:Object`. The instance itself, to make it chainable.
 
 **Description:** Commits the transaction, which means that the status is set to Transactioner.STATUS_SUCCESS, and the undoers are cleared.
 
@@ -251,13 +255,13 @@ transactioner
 
 **Type:** method
 
-**Returns:** Transactioner:Object. The instance itself, to make it chainable.
+**Returns:** `Transactioner:Object`. The instance itself, to make it chainable.
 
 **Description:** Rolls back the transaction, which means that the status is set to Transactioner.STATUS_ERROR, and the undoers are executed in the reversed order they were added.
 
-**Throws:** Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED when the transactioner.status is Transactioner.STATUS_SUCCESS.
+**Throws:** `Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED` when the transactioner.status is `Transactioner.STATUS_SUCCESS`.
 
-**Throws:** Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK when the transactioner.status is Transactioner.STATUS_ERROR.
+**Throws:** `Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK` when the transactioner.status is `Transactioner.STATUS_ERROR`.
 
 **Throws:** Any kind of error, if an undoer throws it.
 

@@ -160,7 +160,7 @@ class Transactioner {
 		 * ----
 		 * 
 		 * #### transactioner.undoers = []
-		 * @type Array<Function>
+		 * @type array &lt;Function&gt;
 		 * @initialValue []
 		 * @description Array containing the functions that roll-back the actions that weer run [but not rolled-back or committed yet].
 		 * 
@@ -172,11 +172,13 @@ class Transactioner {
 		 * 
 		 * #### transactioner.status
 		 * @type number
-		 * @initialValue 0 (Transactioner.STATUS_UNFINISHED)
+		 * @initialValue 0 (= `Transactioner.STATUS_UNFINISHED`)
 		 * @description Value that represents the current status of the transactioner instance. The available values are:
-		 *   - 0: Transactioner.STATUS_UNFINISHED. The transaction has not been committed or rolled-back.
-		 *   - 1: Transactioner.STATUS_SUCCESS. The transaction has been committed.
-		 *   - 2: Transactioner.STATUS_ERROR. The transaction has been rolled-back.
+		 * 
+		 *   - 0: `Transactioner.STATUS_UNFINISHED`. The transaction has not been committed or rolled-back.
+		 *   - 1: `Transactioner.STATUS_SUCCESS`. The transaction has been committed.
+		 *   - 2: `Transactioner.STATUS_ERROR`. The transaction has been rolled-back.
+		 * 
 		 * When the value of this proprty is not 0, the methods `run`, `commit` and `rollback` will be blocked and will throw errors.
 		 * 
 		 */
@@ -189,11 +191,13 @@ class Transactioner {
 	 * 
 	 * #### transactioner.run(...actions)
 	 * @type method
-	 * @parameters ...actions. Objects of the form: { up: <Function>, down: <Function> }. The up functions are executed in the same call. The down functions are saved until the transactioner instance is:
+	 * @parameters `...actions`. Objects of the form: `{ up: &lt;Function&gt;, down: &lt;Function&gt; }`. The up functions are executed in the same call. The down functions are saved until the transactioner instance is:
+	 * 
 	 *   - rolled-back: in this case, the downs will be called reversedly, or:
 	 *   - committed: in this case, the downs will be deleted.
+	 * 
 	 * The down functions are saved under the `transactioner.undoers` array.
-	 * @returns Transactioner:Object. The instance itself, to make it chainable, so you can:
+	 * @returns `Transactioner:Object`. The instance itself, to make it chainable, so you can:
 	 * ```js
 	 * transactioner
 	 *   .run({ up: () => {}, down: () => {} })
@@ -202,8 +206,8 @@ class Transactioner {
 	 *   .run({ up: () => {}, down: () => {} })
 	 *   .commit();
 	 * ```
-	 * @throws Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED when the transactioner.status is Transactioner.STATUS_SUCCESS.
-	 * @throws Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK when the transactioner.status is Transactioner.STATUS_ERROR.
+	 * @throws `Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED` when the transactioner.status is `Transactioner.STATUS_SUCCESS`.
+	 * @throws `Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK` when the transactioner.status is `Transactioner.STATUS_ERROR`.
 	 * 
 	 */
 	run(...actions) {
@@ -226,10 +230,10 @@ class Transactioner {
 	 * 
 	 * #### transactioner.commit()
 	 * @type method
-	 * @returns Transactioner:Object. The instance itself, to make it chainable.
+	 * @returns `Transactioner:Object`. The instance itself, to make it chainable.
 	 * @description Commits the transaction, which means that the status is set to Transactioner.STATUS_SUCCESS, and the undoers are cleared.
-	 * @throws Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED when the transactioner.status is Transactioner.STATUS_SUCCESS.
-	 * @throws Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK when the transactioner.status is Transactioner.STATUS_ERROR.
+	 * @throws `Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED` when the transactioner.status is `Transactioner.STATUS_SUCCESS`.
+	 * @throws `Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK` when the transactioner.status is `Transactioner.STATUS_ERROR`.
 	 * 
 	 */
 	commit() {
@@ -245,7 +249,7 @@ class Transactioner {
 	 * 
 	 * #### transactioner.reset()
 	 * @type method
-	 * @returns Transactioner:Object. The instance itself, to make it chainable.
+	 * @returns `Transactioner:Object`. The instance itself, to make it chainable.
 	 * @description Commits the transaction, which means that the status is set to Transactioner.STATUS_SUCCESS, and the undoers are cleared.
 	 * 
 	 */
@@ -260,10 +264,10 @@ class Transactioner {
 	 * 
 	 * #### transactioner.rollback()
 	 * @type method
-	 * @returns Transactioner:Object. The instance itself, to make it chainable.
+	 * @returns `Transactioner:Object`. The instance itself, to make it chainable.
 	 * @description Rolls back the transaction, which means that the status is set to Transactioner.STATUS_ERROR, and the undoers are executed in the reversed order they were added.
-	 * @throws Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED when the transactioner.status is Transactioner.STATUS_SUCCESS.
-	 * @throws Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK when the transactioner.status is Transactioner.STATUS_ERROR.
+	 * @throws `Transactioner.ERROR_TRANSACTION_STATUS_IS_COMMITTED` when the transactioner.status is `Transactioner.STATUS_SUCCESS`.
+	 * @throws `Transactioner.ERROR_TRANSACTION_STATUS_IS_ROLLEDBACK` when the transactioner.status is `Transactioner.STATUS_ERROR`.
 	 * @throws Any kind of error, if an undoer throws it.
 	 * 
 	 */
