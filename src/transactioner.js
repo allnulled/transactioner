@@ -14,7 +14,7 @@
  * 
  * ### Example 1: commit example
  * 
- * ```js`
+ * ```js
  * const Transactioner = require("transactioner");
  * const transaction = new Transactioner();
  * const data = { i:0 };
@@ -34,11 +34,11 @@
  * transaction.commit();
  * console.log(data.i); // >>>>>>>>>>>>>>>>>>>>>>> 3 // Data is preserved
  * console.log(transaction.undoers.length); // >>> 0 // And undoers are cleaned
- * ````
+ * ```
  * 
  * ### Example 2: rollback example
  * 
- * ```js`
+ * ```js
  * const Transactioner = require("transactioner");
  * const transaction = new Transactioner();
  * const data = { i:0 };
@@ -58,7 +58,7 @@
  * transaction.rollback();
  * console.log(data.i); // >>>>>>>>>>>>>>>>>>>>>>> 3 // Data is rolled-back
  * console.log(transaction.undoers.length); // >>> 0 // Because undoers were executed and cleaned in reverse order
- * ````
+ * ```
  * 
  * ### Example 3: errors thrown on up will automatically rollback
  * 
